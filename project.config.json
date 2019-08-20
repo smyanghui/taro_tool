@@ -1,6 +1,6 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "tool",
+	"projectname": "tools",
 	"description": "tools",
 	"appid": "touristappid",
 	"setting": {
