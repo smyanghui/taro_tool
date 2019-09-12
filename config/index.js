@@ -1,3 +1,9 @@
+const path = require('path');
+const env = process.argv.slice(-1)[0];
+
+// eslint-disable-next-line no-console
+console.log(`\n\n-----------env-------------\n\n${env}\n\n`);
+
 const config = {
   projectName: 'tools',
   date: '2019-8-20',
@@ -25,12 +31,17 @@ const config = {
     }
   },
   defineConstants: {
+    ENV: env,
+    NODE_ENV: process.env.NODE_ENV,
   },
   copy: {
     patterns: [
     ],
     options: {
     }
+  },
+  alias: {
+    '@/': path.resolve(__dirname, '..', 'src/')
   },
   weapp: {
     module: {

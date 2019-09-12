@@ -42,7 +42,9 @@ export default class Index extends Component {
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+    console.log(111, ENV, NODE_ENV, APIDOMAIN);
+  }
 
   componentWillUnmount () { }
 

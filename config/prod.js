@@ -1,8 +1,11 @@
+const domains = require('./domains');
+
 module.exports = {
   env: {
     NODE_ENV: '"production"'
   },
   defineConstants: {
+    APIDOMAIN: domains['prod']
   },
   weapp: {},
   h5: {

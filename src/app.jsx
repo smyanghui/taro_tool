@@ -14,7 +14,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
-      'pages/cooking/index'
+      // 'pages/cooking/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -24,13 +24,44 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {}
+  componentDidMount () {
+    // Taro.startAccelerometer();
+    // // 抖一抖切换环境
+    // Taro.onAccelerometerChange((res) => {
+    //   const isShake = res.x > 1 && res.y > 1;
+    //   if (!isShake) { return; }
+
+    //   Taro.stopAccelerometer();
+    //   const curEnv = this.curEnv();
+    //   Taro.showActionSheet({
+    //       itemList: [
+    //           '当前环境' + curEnv,
+    //           '切换至生产环境',
+    //           '切换至uat环境'
+    //       ],
+    //       success: (res) => {
+    //         const tapIndex = res.tapIndex;
+    //         if (!tapIndex) { return; }
+    //         Taro.clearStorage();
+    //         const newEnv = [curEnv, 'prod', 'uat'][tapIndex];
+    //         Taro.setStorageSync('CURENV', newEnv);
+    //       },
+    //       complete: () => {
+    //         Taro.startAccelerometer();
+    //       }
+    //   });
+    // });
+  }
 
   componentDidShow () {}
 
   componentDidHide () {}
 
   componentDidCatchError () {}
+
+  // curEnv () {
+  //   return Taro.getStorageSync('CURENV') || ENV;
+  // }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数

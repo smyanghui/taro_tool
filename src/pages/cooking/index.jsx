@@ -50,7 +50,7 @@ export default class Index extends Component {
           onClick={this.handleClick.bind(this)}
         >
           <AtTabsPane tabDirection='vertical' current={current} index={0}>
-            <View style='font-size:18px;text-align:center;height:200px;'>标签页一的内容</View>
+                <View style='font-size:18px;text-align:center;height:200px;'>标签页一的内容</View>
           </AtTabsPane>
           <AtTabsPane tabDirection='vertical' current={current} index={1}>
             <View style='font-size:18px;text-align:center;height:200px;'>标签页二的内容</View>
