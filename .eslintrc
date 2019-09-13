@@ -1,8 +1,16 @@
 {
-  "extends": ["taro"],
-  "rules": {
-    "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
-  },
+    "extends": ["taro"],
+    "rules": {
+        "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
+        "react/jsx-filename-extension": [
+            "error",
+            { "extensions": [".js", ".jsx", ".tsx"] }
+        ],
+        "dot-location": 0,
+        "semi": ["error", "always"], // 语句强制分号结尾
+        "quotes": ["error", "single"], // 引号类型 `` "" ''
+        "indent": ["error", 4], // 缩进风格
+        "react/jsx-indent-props": ["error", 4]
+    },
     "parser": "babel-eslint"
-  }
+}
