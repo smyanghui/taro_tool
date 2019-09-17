@@ -1,16 +1,13 @@
 {
-	"miniprogramRoot": "dist/",
-	"projectname": "tools",
-	"description": "tools",
-	"appid": "touristappid",
-	"setting": {
-		"urlCheck": true,
-		"es6": false,
-		"postcss": false,
-		"minified": false
-	},
-	"compileType": "miniprogram",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {}
+  "miniprogramRoot": "./dist",
+  "projectname": "testApp",
+  "description": "tools",
+  "appid": "wx38c2b93884cce8c6",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
 }
