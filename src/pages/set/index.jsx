@@ -1,7 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Text } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import { AtButton, AtList, AtListItem } from 'taro-ui';
-
 import libs from '@/src/libs';
 
 import './index.scss';
@@ -15,17 +14,17 @@ export default class Set extends Component {
         curEnv: ''
     }
 
-    componentWillMount() {
+    componentWillMount () {
         this.currentEnv();
     }
 
-    componentDidMount() {}
+    componentDidMount () {}
 
-    componentWillUnmount() {}
+    componentWillUnmount () {}
 
-    componentDidShow() {}
+    componentDidShow () {}
 
-    componentDidHide() {}
+    componentDidHide () {}
 
     // 摇一摇
     shakePhone () {
@@ -62,7 +61,7 @@ export default class Set extends Component {
         Taro.clearStorageSync();
     }
 
-    render() {
+    render () {
         const {curEnv} = this.state;
         return (
             <View className='wrap'>
@@ -82,7 +81,6 @@ export default class Set extends Component {
                     >清除缓存
                     </AtButton>
                 </View>
-
             </View>
         );
     }

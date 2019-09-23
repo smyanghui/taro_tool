@@ -7,6 +7,7 @@
             { "extensions": [".js", ".jsx", ".tsx"] }
         ],
         "dot-location": 0,
+        "react/sort-comp": 0,
         "semi": ["error", "always"], // 语句强制分号结尾
         "quotes": ["error", "single"], // 引号类型 `` "" ''
         "indent": ["error", 4], // 缩进风格

@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Text } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import { AtGrid } from 'taro-ui';
 
 import './index.scss';
@@ -26,21 +26,21 @@ export default class Index extends Component {
         ]
     }
 
-    componentWillMount() {}
+    componentWillMount () {}
 
-    componentDidMount() {}
+    componentDidMount () {}
 
-    componentWillUnmount() {}
+    componentWillUnmount () {}
 
-    componentDidShow() {}
+    componentDidShow () {}
 
-    componentDidHide() {}
+    componentDidHide () {}
 
-    toPages(item, index) {
+    toPages (item, index) {
         Taro.navigateTo({ url: item.url });
     }
 
-    render() {
+    render () {
         const { list } = this.state;
         return (
             <View className='wrap'>
