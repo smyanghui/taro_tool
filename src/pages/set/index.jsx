@@ -10,8 +10,11 @@ export default class Set extends Component {
         navigationBarTitleText: '设置'
     }
 
-    state = {
-        curEnv: ''
+    constructor (props) {
+        super(props);
+        this.state = {
+            curEnv: ''
+        };
     }
 
     componentWillMount () {

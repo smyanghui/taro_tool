@@ -1,7 +1,8 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Text } from '@tarojs/components';
-import { AtTabs, AtTabsPane } from 'taro-ui';
+import { View, Block } from '@tarojs/components';
+import { AtDrawer, AtList, AtListItem } from 'taro-ui';
 
+import api from '@/src/api';
 import './index.scss';
 
 export default class Cooking extends Component {
@@ -9,70 +10,99 @@ export default class Cooking extends Component {
         navigationBarTitleText: '首页'
     }
 
-    state = {
-        current: 0,
-        list: [
-            { title: '标签页1' },
-            { title: '标签页2' },
-            { title: '标签页3' },
-            { title: '标签页4' },
-            { title: '标签页5' },
-            { title: '标签页6' }
-        ]
+    constructor (props) {
+        super(props);
+        this.state = {
+            show: false,
+            current: 0,
+            menuData: [],
+            oneMenu: [],
+            twoMenu: []
+        };
     }
 
-    componentWillMount() {}
+    componentWillMount () {}
 
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
-    componentDidShow() {}
-
-    componentDidHide() {}
-
-    handleClick(index) {
-        this.setState({ current: index });
+    componentDidMount () {
+        this.ajaxCookingMenu();
     }
 
-    render() {
-        // const { current, list } = this.state;
+    componentWillUnmount () {}
+
+    componentDidShow () {}
+
+    componentDidHide () {}
+
+    oneMenuClick (index) {
+        const { menuData } = this.state;
+        const curData = menuData[index];
+        console.log(123123, curData);
+        this.setState({ current: index, show: true });
+    }
+
+    ajaxCookingMenu () {
+        api.cooking.cookMenu().then(
+            (res) => {
+                const result = res.data.showapi_res_body;
+                let cookingData = [];
+                for (let i in result) {
+                    const one = result[i];
+                    if (typeof one !== 'object') { continue; }
+
+                    let twoData = [];
+                    for (let j in one) { twoData.push({ name: j, list: one[j] }); }
+                    cookingData.push({ name: i, list: twoData });
+                }
+                Taro.setStorageSync('cookingData', cookingData);
+                this.formatMenu(cookingData);
+            },
+            () => {
+                Taro.showToast({icon: 'none', title: '网络错误！'});
+            }
+        );
+    }
+
+    formatMenu (data) {
+        let { oneMenu } = this.state;
+        for (let i in data) {
+            const one = data[i];
+            oneMenu.push(one.name);
+        }
+        this.setState({ menuData: data, oneMenu });
+    }
+
+    render () {
+        const { current, menuData, oneMenu } = this.state;
         return (
             <View className='wrap'>
-                <AtTabs
-                    current={this.state.current}
-                    scroll
-                    height='200px'
-                    tabDirection='vertical'
-                    tabList={[
-                        { title: '标签页1' },
-                        { title: '标签页2' },
-                        { title: '标签页3' },
-                        { title: '标签页4' },
-                        { title: '标签页5' },
-                        { title: '标签页6' },
-                    ]}
-                    onClick={this.handleClick.bind(this)}
+                <AtList>
+                    {
+                        oneMenu.map((item, index) => <Block key={`menua-${index}`}>
+                            <AtListItem
+                                title={item}
+                                arrow='right'
+                                onClick={this.oneMenuClick.bind(this, index)}
+                            />
+                        </Block>)
+                    }
+                </AtList>
+
+                <AtDrawer
+                    show={this.state.show}
+                    mask
                 >
-                    <AtTabsPane tabDirection='vertical' current={this.state.current} index={0}>
-                        <View style='font-size:18px;text-align:center;height:200px;'>标签页一的内容</View>
-                    </AtTabsPane>
-                    <AtTabsPane tabDirection='vertical' current={this.state.current} index={1}>
-                        <View style='font-size:18px;text-align:center;height:200px;'>标签页二的内容</View>
-                    </AtTabsPane>
-                    <AtTabsPane tabDirection='vertical' current={this.state.current} index={2}>
-                        <View style='font-size:18px;text-align:center;height:200px;'>标签页三的内容</View>
-                    </AtTabsPane>
-                    <AtTabsPane tabDirection='vertical' current={this.state.current} index={3}>
-                        <View style='font-size:18px;text-align:center;height:200px;'>标签页四的内容</View>
-                    </AtTabsPane>
-                    <AtTabsPane tabDirection='vertical' current={this.state.current} index={4}>
-                        <View style='font-size:18px;text-align:center;height:200px;'>标签页五的内容</View>
-                    </AtTabsPane>
-                    <AtTabsPane tabDirection='vertical' current={this.state.current} index={5}>
-                        <View style='font-size:18px;text-align:center;height:200px;'>标签页六的内容</View>
-                    </AtTabsPane>
-                </AtTabs>
+                    <AtList>
+                        {
+                            oneMenu.map((item, index) => <Block key={`menu-${index}`}>
+                                <AtListItem
+                                    title={item}
+                                    arrow='right'
+                                    onClick={this.oneMenuClick.bind(this, index)}
+                                />
+                            </Block>)
+                        }
+                    </AtList>
+                </AtDrawer>
             </View>
         );
     }

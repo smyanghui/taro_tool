@@ -1,15 +1,9 @@
 const domains = {
     prod: {
-        mpDomain: 'https://www.abc.com',
-        webDomain: 'https://www.web.com'
-    },
-    uat: {
-        mpDomain: 'https://uat.abc.com',
-        webDomain: 'https://uat.web.com'
+        mpDomain: 'https://route.showapi.com'
     },
     st: {
-        mpDomain: 'https://test.abc.com',
-        webDomain: 'https://test.web.com'
+        mpDomain: 'https://route.showapi.com'
     }
 };
 

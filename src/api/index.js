@@ -1,7 +1,7 @@
-import Cart from './cart';
-import Login from './login';
+import cooking from './cooking';
+// import Login from './login';
 
 export default {
-    Cart,
-    Login
+    cooking,
+    // Login
 };

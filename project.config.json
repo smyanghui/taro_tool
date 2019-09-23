@@ -1,13 +1,43 @@
 {
-  "miniprogramRoot": "./dist",
-  "projectname": "testApp",
-  "description": "tools",
-  "appid": "wx38c2b93884cce8c6",
-  "setting": {
-    "urlCheck": true,
-    "es6": false,
-    "postcss": false,
-    "minified": false
-  },
-  "compileType": "miniprogram"
+	"miniprogramRoot": "dist/",
+	"projectname": "testApp",
+	"description": "tools",
+	"appid": "wx38c2b93884cce8c6",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false
+	},
+	"compileType": "miniprogram",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/cooking/index",
+					"pathName": "pages/cooking/index",
+					"scene": null
+				}
+			]
+		}
+	}
 }

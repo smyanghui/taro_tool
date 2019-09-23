@@ -10,7 +10,7 @@ const mpApp = {
         return Taro.getStorageSync('CURENV') || ENV;
     }
 
-}
+};
 
 export default {
     mpApp,

@@ -1,12 +1,12 @@
 import Taro from '@tarojs/taro';
 
-const DOMAIN_API = 'https://www.baidu.com';
+const DOMAIN_API = 'https://www.xxx.com';
 
 function r (url, data = {}) {
     let params = {
         url,
         data,
-        method: 'POST'
+        method: 'GET'
     };
 
     if (!/^https?:/.test(params.url)) {
@@ -15,13 +15,8 @@ function r (url, data = {}) {
 
     return new Promise((resolve, reject) => {
         Taro.request(params).then(
-            (res) => {
-                resolve(res);
-            },
-            (res) => {
-                // Taro.showModal({title: res.msg});
-                reject(res);
-            }
+            (res) => { resolve(res); },
+            (res) => { reject(res); }
         );
     });
 }
