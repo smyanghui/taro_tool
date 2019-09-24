@@ -16,6 +16,8 @@ class App extends Component {
             'pages/cooking/index',
             'pages/cooking/list',
             'pages/cooking/detail',
+            'pages/story/index',
+            'pages/story/list',
             'pages/set/index',
         ],
         window: {

@@ -1,7 +1,7 @@
 import cooking from './cooking';
-// import Login from './login';
+import story from './story';
 
 export default {
     cooking,
-    // Login
+    story
 };
