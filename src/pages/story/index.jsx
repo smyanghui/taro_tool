@@ -1,8 +1,8 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Block } from '@tarojs/components';
-import { AtList, AtListItem } from 'taro-ui';
+import { View } from '@tarojs/components';
+import { AtGrid } from 'taro-ui';
 
-import api from '@/src/api';
+import api from '@/src/api/showapi';
 import './index.scss';
 
 export default class Story extends Component {
@@ -30,10 +30,14 @@ export default class Story extends Component {
     componentDidHide () {}
 
     ajaxStroyList () {
-        api.story.storyMenu().then(
+        api.storyMenu().then(
             (res) => {
                 const result = res.data.showapi_res_body;
-                const storylist = result.storylist || [];
+                let storylist = result.storylist || [];
+                for (let i in storylist) {
+                    const li = storylist[i];
+                    li.value = li.classify;
+                }
                 this.setState({ storylist });
             },
             () => {
@@ -42,8 +46,8 @@ export default class Story extends Component {
         );
     }
 
-    toDetail (id) {
-        const url = '/pages/story/list?type=' + id;
+    toDetail (item) {
+        const url = '/pages/story/list?type=' + item.classifyId;
         Taro.navigateTo({ url });
     }
 
@@ -51,16 +55,11 @@ export default class Story extends Component {
         const { storylist } = this.state;
         return (
             <View className='wrap'>
-                <AtList>
-                    {
-                        storylist.map((item, index) => <Block key={`stroy-${index}`}>
-                            <AtListItem
-                                title={item.classify}
-                                onClick={this.toDetail.bind(this, item.classifyId)}
-                            />
-                        </Block>)
-                    }
-                </AtList>
+                <AtGrid
+                    data={storylist}
+                    mode='rect'
+                    onClick={this.toDetail.bind(this)}
+                />
             </View>
         );
     }

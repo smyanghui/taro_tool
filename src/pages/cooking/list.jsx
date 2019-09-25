@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro';
 import { View, Block } from '@tarojs/components';
 import { AtList, AtListItem } from 'taro-ui';
 
-import api from '@/src/api';
+import api from '@/src/api/showapi';
 import './index.scss';
 
 export default class List extends Component {
@@ -47,7 +47,7 @@ export default class List extends Component {
             type: menu,
             page: curPage,
         };
-        api.cooking.cookList(params).then(
+        api.cookList(params).then(
             (res) => {
                 const result = res.data.showapi_res_body;
                 const cookingList = result.datas || [];

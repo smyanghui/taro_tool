@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Image, Block } from '@tarojs/components';
+import { View } from '@tarojs/components';
 
+import api from '@/src/api/showapi';
 import './index.scss';
 
 export default class Detail extends Component {
@@ -11,13 +12,16 @@ export default class Detail extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            cookDetail: {}
+            storyId: '',
+            storyDetail: {}
         };
     }
 
     componentWillMount () {
-        const cookDetail = Taro.getStorageSync('cookDetail') || {};
-        this.setState({ cookDetail });
+        const storyId = this.$router.params.id || '';
+        this.setState({ storyId }, () => {
+            this.ajaxStroyDetail();
+        });
     }
 
     componentDidMount () {}
@@ -28,28 +32,35 @@ export default class Detail extends Component {
 
     componentDidHide () {}
 
+    ajaxStroyDetail () {
+        const { storyId } = this.state;
+        const params = {
+            id: storyId
+        };
+        api.storyDetail(params).then(
+            (res) => {
+                const storyDetail = res.data.showapi_res_body || {};
+                this.setState({ storyDetail });
+            },
+            () => {
+                Taro.showToast({icon: 'none', title: '网络错误！'});
+            }
+        );
+    }
+
     render () {
-        const { cookDetail } = this.state;
-        const detail = cookDetail;
+        const { storyDetail } = this.state;
+        const detail = storyDetail;
+
         return (
             <View className='wrap'>
 
                 <View className='at-article'>
-                    <View className='at-article__h1'>{detail.cpName}</View>
-                    <View className='at-article__info'>{detail.ct}</View>
+                    <View className='at-article__h1'>{detail.title}</View>
+                    <View className='at-article__info'>{detail.classify}</View>
                     <View className='at-article__content'>
                         <View className='at-article__section'>
-                            <View className='at-article__h3'>{detail.type}</View>
-                            {
-                                detail.steps.map((item, index) => <Block key={`detail-${index}`}>
-                                    <View className='at-article__p'>{item.content}</View>
-                                    <Image 
-                                        className='at-article__img' 
-                                        src={item.imgUrl} 
-                                        mode='widthFix'
-                                    />
-                                </Block>)
-                            }
+                            <View className='at-article__p'>{detail.content}</View>
                         </View>
                     </View>
                 </View>

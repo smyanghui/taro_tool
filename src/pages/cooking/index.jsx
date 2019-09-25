@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro';
 import { View, Block } from '@tarojs/components';
 import { AtDrawer, AtList, AtListItem } from 'taro-ui';
 
-import api from '@/src/api';
+import api from '@/src/api/showapi';
 import './index.scss';
 
 export default class Cooking extends Component {
@@ -56,7 +56,7 @@ export default class Cooking extends Component {
     }
 
     ajaxCookingMenu () {
-        api.cooking.cookMenu().then(
+        api.cookMenu().then(
             (res) => {
                 const result = res.data.showapi_res_body;
                 let cookingData = [];

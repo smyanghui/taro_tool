@@ -11,7 +11,9 @@ export default class Detail extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            cookDetail: {}
+            cookDetail: {
+                steps: []
+            }
         };
     }
 

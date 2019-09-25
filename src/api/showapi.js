@@ -11,11 +11,21 @@ const ajax = (path, data = {}) => {
 };
 
 export default {
+    // 菜谱
     cookMenu (params) {
         return ajax('/1164-2', params);
     },
-
     cookList (params) {
         return ajax('/1164-1', params);
+    },
+    // 故事
+    storyMenu (params) {
+        return ajax('/1700-1', params);
+    },
+    storyList (params) {
+        return ajax('/1700-2', params);
+    },
+    storyDetail (params) {
+        return ajax('/1700-3', params);
     }
 };
