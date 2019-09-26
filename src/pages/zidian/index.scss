@@ -4,9 +4,17 @@
 
 .search_box {
     display: flex;
-    // border-bottom: 1px solid #ddd;
+    padding: 10px; margin: 24px;
+    border: 2px solid #ccc; border-radius: 10px;
 
     .zi_input {
         flex: 1;
     }
 }
+
+.zi_list {
+    padding: 20px 0; font-size: 32px; word-break: break-all;
+    border-bottom: 1px solid #fafafa;  line-height: 48px;
+}
+
+.xx_box { margin-top: 30px;}

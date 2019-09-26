@@ -25,8 +25,10 @@ class App extends Component {
             'pages/oilPrice/index',
             // 老黄历
             'pages/laohuangli/index',
-            // 字典
+            // 新华字典
             'pages/zidian/index',
+            // 成语词典
+            'pages/zidian/chengyu',
             // 'pages/set/index',
         ],
         window: {
