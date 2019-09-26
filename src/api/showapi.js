@@ -27,5 +27,9 @@ export default {
     },
     storyDetail (params) {
         return ajax('/1700-3', params);
-    }
+    },
+    // 油价
+    oilPrice (params) {
+        return ajax('/138-46', params);
+    },
 };

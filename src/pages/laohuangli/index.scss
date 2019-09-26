@@ -1,0 +1,16 @@
+.wrap {
+    padding: 20px;
+}
+
+.date_box {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+
+    .picker_box {
+        flex: 1;
+        text-align: right;
+
+        text { color: #666;}
+    }
+}

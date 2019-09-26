@@ -21,6 +21,10 @@ class App extends Component {
             'pages/story/index',
             'pages/story/list',
             'pages/story/detail',
+            // 油价
+            'pages/oilPrice/index',
+            // 老黄历
+            'pages/laohuangli/index',
             // 'pages/set/index',
         ],
         window: {

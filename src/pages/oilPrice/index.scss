@@ -1,0 +1,14 @@
+.wrap {
+    padding: 20px; color: #fff;
+    background: linear-gradient(30deg,rgba(2,112,176,1) 0%,rgba(83,169,220,1) 100%);
+}
+
+.ct { padding-bottom: 20px; text-align: center;}
+.table_box {
+    display: flex;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 15px 0;
+
+    view { flex: 1;}
+}

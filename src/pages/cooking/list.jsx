@@ -14,7 +14,8 @@ export default class List extends Component {
         super(props);
         this.state = {
             menu: '',
-            curPage: 1,
+            curPage: 0,
+            maxPage: 1,
             isEmpty: false,
             cookingList: []
         };
@@ -42,23 +43,49 @@ export default class List extends Component {
     }
 
     ajaxCookingList () {
-        const { menu, curPage } = this.state;
+        const { menu, curPage, maxPage } = this.state;
+        const nextPage = curPage + 1;
+        if (nextPage > maxPage) { return; }
+        Taro.showLoading({title: ''});
+
         const params = {
             type: menu,
-            page: curPage,
+            page: nextPage,
         };
         api.cookList(params).then(
             (res) => {
+                Taro.hideLoading();
                 const result = res.data.showapi_res_body;
                 const cookingList = result.datas || [];
+
+                // if (result.ret_code !== '0') {
+                //     wx.showToast({icon: 'none', title: result.msg})
+                //     this.moreVisiable = false
+                //     if (curPage === 1) {
+                //         this.empty = true
+                //     }
+                //     this.$apply()
+                //     return
+                // }
+                // this.curPage = curPage
+                // this.maxPage = result.allPage
+                // this.cookList = (curPage === 1) ? list : this.cookList.concat(list)
+
                 const isEmpty = cookingList.length === 0;
                 this.setState({ cookingList, isEmpty });
             },
             () => {
+                Taro.hideLoading();
                 Taro.showToast({icon: 'none', title: '网络错误！'});
             }
         );
     }
+
+    onReachBottom() {
+        console.log(123);
+        // this.ajaxCookingList();
+    }
+    
 
     render () {
         const { cookingList, isEmpty } = this.state;
