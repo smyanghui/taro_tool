@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Text, Picker, Block } from '@tarojs/components';
+import { View, Text, Picker } from '@tarojs/components';
 
 import api from '@/src/api/juhe';
 import './index.scss';
@@ -69,25 +69,30 @@ export default class Index extends Component {
             <View className='wrap'>
 
                 <View className='date_box'>
-                    <View>选择日期</View>
-                    <View className='picker_box'>
-                        <Picker
-                            mode='date'
-                            value={curDate}
-                            onChange={this.changeDate.bind(this)}
-                        >
-                            <Text>{curDate}</Text>
-                        </Picker>
-                    </View>
+                    <Picker
+                        mode='date'
+                        value={curDate}
+                        onChange={this.changeDate.bind(this)}
+                    >
+                        <Text>{curDate}</Text>
+                    </Picker>
                 </View>
 
                 <View className='at-article'>
                     <View className='at-article__h1'>阴历</View>
                     <View className='at-article__p'>{detail.yinli}</View>
+                    <View className='at-article__h1'>五行</View>
+                    <View className='at-article__p'>{detail.wuxing}</View>
                     <View className='at-article__h1'>宜</View>
                     <View className='at-article__p'>{detail.yi}</View>
+                    <View className='at-article__h1'>吉神宜趋</View>
+                    <View className='at-article__p'>{detail.jishen}</View>
                     <View className='at-article__h1'>忌</View>
                     <View className='at-article__p'>{detail.ji}</View>
+                    <View className='at-article__h1'>凶神宜忌</View>
+                    <View className='at-article__p'>{detail.xiongshen}</View>
+                    <View className='at-article__h1'>冲煞</View>
+                    <View className='at-article__p'>{detail.chongsha}</View>
                 </View>
 
             </View>

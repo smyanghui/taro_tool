@@ -25,6 +25,8 @@ class App extends Component {
             'pages/oilPrice/index',
             // 老黄历
             'pages/laohuangli/index',
+            // 字典
+            'pages/zidian/index',
             // 'pages/set/index',
         ],
         window: {

@@ -40,19 +40,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/oilPrice/index",
-					"pathName": "pages/oilPrice/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/laohuangli/index",
-					"pathName": "pages/laohuangli/index",
+					"name": "pages/zidian/index",
+					"pathName": "pages/zidian/index",
 					"scene": null
 				}
 			]

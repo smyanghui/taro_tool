@@ -17,8 +17,14 @@ export default class Index extends Component {
                     image:
                         'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
                     value: '首页',
-                    url: '/pages/laohuangli/index'
+                    url: '/pages/zidian/index'
                 },
+                // {
+                //     image:
+                //         'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+                //     value: '老黄历',
+                //     url: '/pages/laohuangli/index'
+                // },
                 // {
                 //     image:
                 //         'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',

@@ -6,11 +6,10 @@
     display: flex;
     border-bottom: 1px solid #ddd;
     padding: 20px;
+    font-size: 60px;
+}
 
-    .picker_box {
-        flex: 1;
-        text-align: right;
-
-        text { color: #666;}
-    }
+.at-article__p {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
 }
