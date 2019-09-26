@@ -29,6 +29,8 @@ class App extends Component {
             'pages/zidian/index',
             // 成语词典
             'pages/zidian/chengyu',
+            // 周公解梦
+            'pages/zidian/dream',
             // 'pages/set/index',
         ],
         window: {

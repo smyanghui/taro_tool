@@ -21,6 +21,11 @@ export default {
     chengyuQuery (params) {
         params.key = 'fcebce9d6a51bb341c4b7d34b019c517';
         return ajax('/chengyu/query', params);
+    },
+    // 周公解梦
+    dreamQuery (params) {
+        params.key = '1d02f61ee140ae28db5a5b0fbd6e92e5';
+        return ajax('/dream/query', params);
     }
     
 
