@@ -26,7 +26,14 @@ export default {
     dreamQuery (params) {
         params.key = '1d02f61ee140ae28db5a5b0fbd6e92e5';
         return ajax('/dream/query', params);
+    },
+    dreamCategory (params = {}) {
+        params.key = '1d02f61ee140ae28db5a5b0fbd6e92e5';
+        return ajax('/dream/category', params);
+    },
+    dreamQueryid (params = {}) {
+        params.key = '1d02f61ee140ae28db5a5b0fbd6e92e5';
+        return ajax('/dream/queryid', params);
     }
-    
 
 };

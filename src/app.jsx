@@ -30,7 +30,8 @@ class App extends Component {
             // 成语词典
             'pages/zidian/chengyu',
             // 周公解梦
-            'pages/zidian/dream',
+            'pages/dream/index',
+            'pages/dream/detail',
             // 'pages/set/index',
         ],
         window: {

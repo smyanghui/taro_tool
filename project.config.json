@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -53,6 +53,20 @@
 					"id": -1,
 					"name": "pages/zidian/chengyu",
 					"pathName": "pages/zidian/chengyu",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/zidian/dream",
+					"pathName": "pages/zidian/dream",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/dream/index",
+					"pathName": "pages/dream/index",
 					"scene": null
 				}
 			]

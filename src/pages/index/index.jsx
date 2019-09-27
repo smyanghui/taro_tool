@@ -16,7 +16,7 @@ export default class Index extends Component {
                 {
                     image: 'https://smyanghui.oss-cn-beijing.aliyuncs.com/cart-light.png?Expires=1569493072&OSSAccessKeyId=TMP.hXHhwTff9kwK5Y2Ho6GzEzvpFCiFDgp7B9tXdnTFoASU9bPNeMecYmcu8gfB6rv3tSpGg4ZdC7VBQTunmym48bQXskkzptkACA8BA33ffg6H6CysnSFkmHEoEB5JLg.tmp&Signature=QqvDgYhWWIWCxM2C8CX6bIItoYs%3D',
                     value: 'xxxx',
-                    url: '/pages/zidian/dream'
+                    url: '/pages/dream/index'
                 },
                 // {
                 //     image: 'https://smyanghui.oss-cn-beijing.aliyuncs.com/cart-light.png?Expires=1569493072&OSSAccessKeyId=TMP.hXHhwTff9kwK5Y2Ho6GzEzvpFCiFDgp7B9tXdnTFoASU9bPNeMecYmcu8gfB6rv3tSpGg4ZdC7VBQTunmym48bQXskkzptkACA8BA33ffg6H6CysnSFkmHEoEB5JLg.tmp&Signature=QqvDgYhWWIWCxM2C8CX6bIItoYs%3D',
