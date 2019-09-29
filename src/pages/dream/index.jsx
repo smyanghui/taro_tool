@@ -1,11 +1,10 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Text, Block } from '@tarojs/components';
-import { AtInput, AtButton, AtTabBar, AtIcon } from 'taro-ui';
+import { View, Block } from '@tarojs/components';
+import { AtInput, AtButton, AtDrawer, AtIcon, AtList, AtListItem } from 'taro-ui';
 import Topbar from '@/src/components/topbar';
 
-import api from '@/src/api/juhe';
 import './index.scss';
-import pageBg from './images/bg_1.jpg';
+import pageBg from './images/bg_2.jpg';
 
 export default class Dream extends Component {
     config = {
@@ -16,19 +15,16 @@ export default class Dream extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            currentTabBar: 0,
             keyWord: '',
-            categoryList: []
+            showMenu: false
         };
-        this.tabBarData = [
-            {title: '选择类型', iconType: 'bullet-list'},
-            {title: '关键字搜素', iconType: 'search'}
+        this.menuData = [
+            {name: '选择类型', url: 'bullet-list'},
+            {name: '关键字搜素', url: 'search'}
         ];
     }
 
-    componentWillMount () {
-        // this.ajaxDreamCategory();
-    }
+    componentWillMount () {}
 
     componentDidMount () {}
 
@@ -46,55 +42,53 @@ export default class Dream extends Component {
             Taro.showToast({icon: 'none', title: '请输入中文字符'});
             return;
         }
-        const url = '/pages/dream/detail?kw=' + keyWord;
+        const url = '/pages/dream/detail?kw=' + encodeURIComponent(keyWord);
         Taro.navigateTo({ url });
     }
 
     // 获取分类
-    ajaxDreamCategory () {
-        api.dreamCategory().then(
-            (res) => {
-                if (res.data.error_code !== 0) {
-                    const result = res.data.result;
-                    const errMessage = (typeof result === 'string') ? result : '查询有误！';
-                    Taro.showToast({icon: 'none', title: errMessage});
-                    return;
-                }
-                const result = res.data.result;
-                this.setState({ categoryList: result });
-            },
-            () => {
-                Taro.showToast({icon: 'none', title: '网络错误！'});
-            }
-        );
-    }
+    // ajaxDreamCategory () {
+    //     api.dreamCategory().then(
+    //         (res) => {
+    //             if (res.data.error_code !== 0) {
+    //                 const result = res.data.result;
+    //                 const errMessage = (typeof result === 'string') ? result : '查询有误！';
+    //                 Taro.showToast({icon: 'none', title: errMessage});
+    //                 return;
+    //             }
+    //             const result = res.data.result;
+    //             this.setState({ categoryList: result });
+    //         },
+    //         () => {
+    //             Taro.showToast({icon: 'none', title: '网络错误！'});
+    //         }
+    //     );
+    // }
 
-    changeZi (val) {
-        const keyWord = val;
-        this.setState({ keyWord });
-    }
-
-    // 选择分类
-    selectCategory (item) {
-        const url = '/pages/dream/detail?id=' + item.id;
-        Taro.navigateTo({ url });
+    toDetail (data) {
+        console.log(123, data);
+        // const url = '/pages/story/detail?id=' + id;
+        // Taro.navigateTo({ url });
     }
 
     render () {
-        const { categoryList, keyWord } = this.state;
-        const backIcon = <AtIcon
-            value='bullet-list'
-            size='24'
-            color='#333'
-            onClick={this.adfasdf.bind(this)}
-        />;
+        const { keyWord } = this.state;
 
-        return (<View style={{backgroundImage: `url(${pageBg})`}}>
+        return (<View className='out_box' style={{backgroundImage: `url(${pageBg})`}}>
 
-            <Topbar renderLeft={backIcon}>汉薇商场</Topbar>
+            <Topbar
+                title='汉薇商场123'
+                renderLeft={
+                    <AtIcon
+                        value='bullet-list'
+                        size='24'
+                        color='#333'
+                        onClick={() => this.setState({showMenu: true})}
+                    />
+                }
+            />
 
-            <View className='wrap' style={{backgroundImage: `url(${pageBg})`}}>
-
+            <View className='wrap'>
                 <View className='search_box'>
                     <View className='zi_input'>
                         <AtInput
@@ -102,9 +96,9 @@ export default class Dream extends Component {
                             type='text'
                             border={false}
                             maxLength='10'
-                            placeholder='输入关键词'
+                            placeholder='输入梦到的内容'
                             value={keyWord}
-                            onChange={this.changeZi.bind(this)}
+                            onChange={(val) => this.setState({keyWord: val})}
                         />
                     </View>
                     <View>
@@ -116,13 +110,19 @@ export default class Dream extends Component {
                     </View>
                 </View>
 
-                <View className='category_box'>
-                    {
-                        categoryList.map((item, index) => <Block key={index}>
-                            <Text onClick={this.selectCategory.bind(this, item)}>{item.name}</Text>
-                        </Block>)
-                    }
-                </View>
+                <AtDrawer show={this.state.showMenu}>
+                    <AtList>
+                        {
+                            this.menuData.map((item, index) => <Block key={`list-${index}`}>
+                                <AtListItem
+                                    title={item.name}
+                                    arrow='right'
+                                    onClick={this.toDetail.bind(this, item)}
+                                />
+                            </Block>)
+                        }
+                    </AtList>
+                </AtDrawer>
 
             </View>
         </View>);

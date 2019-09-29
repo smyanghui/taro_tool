@@ -1,6 +1,5 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, Block } from '@tarojs/components';
-import { AtCard }  from 'taro-ui';
 
 import api from '@/src/api/juhe';
 import './index.scss';
@@ -13,6 +12,7 @@ export default class Detail extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            isEmpty: false,
             dreamList: []
         };
     }
@@ -21,6 +21,7 @@ export default class Detail extends Component {
         const kw = this.$router.params.kw || '';
         const id = this.$router.params.id || '';
         if (kw) { this.ajaxDreamQuery(kw); }
+        Taro.setNavigationBarTitle({title: kw});
         if (id) { this.ajaxDreamQueryid(id); }
     }
 
@@ -34,7 +35,7 @@ export default class Detail extends Component {
 
     // 查询
     ajaxDreamQuery (keyWord) {
-        const param = {q: keyWord};
+        const param = {q: decodeURIComponent(keyWord)};
         api.dreamQuery(param).then(
             (res) => {
                 if (this.erroToast(res)) { return; }
@@ -48,7 +49,7 @@ export default class Detail extends Component {
         );
     }
 
-    // 查询
+    // 通过ID查询
     ajaxDreamQueryid (id) {
         let { dreamList } = this.state;
         const param = {id};
@@ -57,7 +58,7 @@ export default class Detail extends Component {
                 if (this.erroToast(res)) { return; }
                 const result = res.data.result;
                 for (let i in dreamList) {
-                    if (dreamList[i].id === id) { dreamList[i].list = result; }
+                    if (dreamList[i].id === id) { dreamList[i].list = result.list; }
                 }
                 this.setState({ dreamList });
             },
@@ -74,45 +75,42 @@ export default class Detail extends Component {
             const errMessage = (typeof result === 'string') ? result : '查询有误！';
             Taro.showToast({icon: 'none', title: errMessage});
         }
+        this.setState({ isEmpty: true });
         return isErro;
     }
 
     render () {
-        const { dreamList } = this.state;
-        const isEmpty = dreamList.length === 0;
+        let { isEmpty, dreamList } = this.state;
+        isEmpty = !isEmpty && dreamList.length !== 0;
 
-        return (
-            <View className='wrap'>
-
+        return (<View>
+            <View className='at-article'>
                 {
-                    !isEmpty &&
                     dreamList.map((item, index) => <Block key={`list-${index}`}>
-                        <View className='at-article'>
-                            <View className='at-article__h2'>{item.title}</View>
-                            {
-                                item.list.length > 0
-                                    ?
-                                    item.list.map((item2, index2) => <Block key={`list2-${index2}`}>
-                                        <View className='at-article__p'>{item2}</View>
-                                    </Block>)
-                                    :
-                                    <View
-                                        className='at-article__p'
-                                        onClick={() => this.ajaxDreamQueryid(item.id)}
-                                    >
-                                        {item.des}
-                                        <Text>点击查看更多</Text>
-                                    </View>
-                            }
-                        </View>
+                        <View className='at-article__h2'>{item.title}</View>
+                        {
+                            item.list && item.list.length > 0
+                                ?
+                                item.list.map((item2, index2) => <Block key={`list2-${index2}`}>
+                                    <View className='at-article__p'>{item2}</View>
+                                </Block>)
+                                :
+                                <View
+                                    className='at-article__p'
+                                    onClick={() => this.ajaxDreamQueryid(item.id)}
+                                >
+                                    {item.des}
+                                    <Text className='more'>查看更多</Text>
+                                </View>
+                        }
                     </Block>)
                 }
-
-                {
-                    isEmpty && <View className='list_empty'>未查到相关数据！</View>
-                }
-
             </View>
-        );
+
+            {
+                isEmpty && <View className='list_empty'>未查到相关数据！</View>
+            }
+
+        </View>);
     }
 }

@@ -4,7 +4,7 @@
 	"description": "tools",
 	"appid": "wx38c2b93884cce8c6",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": false,
 		"postcss": false,
 		"minified": false,
@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -60,6 +60,13 @@
 					"id": -1,
 					"name": "pages/zidian/dream",
 					"pathName": "pages/zidian/dream",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/dream/index",
+					"pathName": "pages/dream/index",
 					"query": "",
 					"scene": null
 				},

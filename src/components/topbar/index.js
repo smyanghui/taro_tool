@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View } from '@tarojs/components';
-import { AtIcon } from 'taro-ui';
+// import { AtIcon } from 'taro-ui';
 
 import './index.scss';
 
@@ -40,6 +40,7 @@ export default class Topbar extends Component {
         const barHeight = {
             height: (top + height + 10) + 'px'
         };
+        const content = this.props.title ? this.props.title : this.props.children;
 
         return (
             <View className='top_bar' style={barHeight}>
@@ -49,7 +50,7 @@ export default class Topbar extends Component {
                     <View className='icon_box'>
                         {this.props.renderLeft}
                     </View>
-                    {this.props.children}
+                    {content}
                 </View>
 
                 {/* 占位高度 */}
