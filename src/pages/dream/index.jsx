@@ -1,32 +1,40 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Block } from '@tarojs/components';
-import { AtInput, AtButton, AtDrawer, AtIcon, AtList, AtListItem } from 'taro-ui';
-import Topbar from '@/src/components/topbar';
+import { View, Image, Text, Block } from '@tarojs/components';
+import { AtInput, AtButton, AtGrid } from 'taro-ui';
 
 import './index.scss';
-import pageBg from './images/bg_2.jpg';
+import mBg from './images/m.png';
 
 export default class Dream extends Component {
     config = {
-        // navigationBarTitleText: '周公解梦'
-        navigationStyle: 'custom'
+        navigationBarTitleText: '周公解梦'
+        // navigationStyle: 'custom'
     }
 
     constructor (props) {
         super(props);
         this.state = {
-            keyWord: '',
-            showMenu: false
+            keyWord: ''
         };
-        this.menuData = [
-            {name: '选择类型', url: 'bullet-list'},
-            {name: '关键字搜素', url: 'search'}
+        this.hotRecord = ['蛇', '鱼', '同学', '结婚', '吃饭', '打架', '吵架'];
+        this.otherList = [
+            {
+                // image: 'https://smyanghui.oss-cn-beijing.aliyuncs.com/cart-light.png?Expires=1569493072&OSSAccessKeyId=TMP.hXHhwTff9kwK5Y2Ho6GzEzvpFCiFDgp7B9tXdnTFoASU9bPNeMecYmcu8gfB6rv3tSpGg4ZdC7VBQTunmym48bQXskkzptkACA8BA33ffg6H6CysnSFkmHEoEB5JLg.tmp&Signature=QqvDgYhWWIWCxM2C8CX6bIItoYs%3D',
+                value: '老黄历',
+                url: '/pages/laohuangli/index'
+            },
+            {
+                value: '今日油价',
+                url: '/pages/oilPrice/index'
+            }
         ];
     }
 
     componentWillMount () {}
 
-    componentDidMount () {}
+    componentDidMount () {
+        this.setState({keyWord : ''});
+    }
 
     componentWillUnmount () {}
 
@@ -42,51 +50,32 @@ export default class Dream extends Component {
             Taro.showToast({icon: 'none', title: '请输入中文字符'});
             return;
         }
-        const url = '/pages/dream/detail?kw=' + encodeURIComponent(keyWord);
+        this.toDetail(keyWord);
+    }
+
+    toDetail (val) {
+        let historyRecord = Taro.getStorageSync('historyRecord') || [];
+        const isRecord = historyRecord.includes(val);
+        console.log(isRecord, historyRecord);
+        if (!isRecord) {
+            historyRecord.push(val);
+            Taro.setStorageSync('historyRecord', historyRecord);
+        }
+        const url = '/pages/dream/detail?kw=' + encodeURIComponent(val);
         Taro.navigateTo({ url });
     }
 
-    // 获取分类
-    // ajaxDreamCategory () {
-    //     api.dreamCategory().then(
-    //         (res) => {
-    //             if (res.data.error_code !== 0) {
-    //                 const result = res.data.result;
-    //                 const errMessage = (typeof result === 'string') ? result : '查询有误！';
-    //                 Taro.showToast({icon: 'none', title: errMessage});
-    //                 return;
-    //             }
-    //             const result = res.data.result;
-    //             this.setState({ categoryList: result });
-    //         },
-    //         () => {
-    //             Taro.showToast({icon: 'none', title: '网络错误！'});
-    //         }
-    //     );
-    // }
-
-    toDetail (data) {
-        console.log(123, data);
-        // const url = '/pages/story/detail?id=' + id;
-        // Taro.navigateTo({ url });
+    toPages (item) {
+        Taro.navigateTo({ url: item.url });
     }
 
     render () {
         const { keyWord } = this.state;
+        const historyRecord = Taro.getStorageSync('historyRecord') || [];
 
-        return (<View className='out_box' style={{backgroundImage: `url(${pageBg})`}}>
+        return (<View>
 
-            <Topbar
-                title='汉薇商场123'
-                renderLeft={
-                    <AtIcon
-                        value='bullet-list'
-                        size='24'
-                        color='#333'
-                        onClick={() => this.setState({showMenu: true})}
-                    />
-                }
-            />
+            <Image className='meng_bg' src={mBg} mode='widthFix' />
 
             <View className='wrap'>
                 <View className='search_box'>
@@ -110,20 +99,41 @@ export default class Dream extends Component {
                     </View>
                 </View>
 
-                <AtDrawer show={this.state.showMenu}>
-                    <AtList>
+                <View className='at-article'>
+                    {
+                        historyRecord.length > 0 &&
+                        <Block>
+                            <View className='at-article__h2'>最近搜索</View>
+                            <View className='at-article__p'>
+                                {
+                                    historyRecord.map((item, index) => <Block key={index}>
+                                        <Text
+                                            className='record'
+                                            onClick={this.toDetail.bind(this, item)}
+                                        >{item}</Text>
+                                    </Block>)
+                                }
+                            </View>
+                        </Block>
+                    }
+                    <View className='at-article__h2'>热门搜索</View>
+                    <View className='at-article__p'>
                         {
-                            this.menuData.map((item, index) => <Block key={`list-${index}`}>
-                                <AtListItem
-                                    title={item.name}
-                                    arrow='right'
+                            this.hotRecord.map((item, index) => <Block key={index}>
+                                <Text
+                                    className='record'
                                     onClick={this.toDetail.bind(this, item)}
-                                />
+                                >{item}</Text>
                             </Block>)
                         }
-                    </AtList>
-                </AtDrawer>
-
+                    </View>
+                    <View className='at-article__h2'>其他查询</View>
+                    <AtGrid
+                        data={this.otherList}
+                        mode='rect'
+                        onClick={this.toPages.bind(this)}
+                    />
+                </View>
             </View>
         </View>);
     }

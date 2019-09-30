@@ -21,7 +21,7 @@ export default class Detail extends Component {
         const kw = this.$router.params.kw || '';
         const id = this.$router.params.id || '';
         if (kw) { this.ajaxDreamQuery(kw); }
-        Taro.setNavigationBarTitle({title: kw});
+        Taro.setNavigationBarTitle({title: '梦到-' + kw});
         if (id) { this.ajaxDreamQueryid(id); }
     }
 
@@ -69,13 +69,13 @@ export default class Detail extends Component {
     }
 
     erroToast (res) {
-        const isErro = res.data.error_code !== 0;
+        const result = res.data.result;
+        const isErro = res.data.error_code !== 0 || !result;
         if (isErro) {
-            const result = res.data.result;
             const errMessage = (typeof result === 'string') ? result : '查询有误！';
             Taro.showToast({icon: 'none', title: errMessage});
+            this.setState({ isEmpty: true });
         }
-        this.setState({ isEmpty: true });
         return isErro;
     }
 
@@ -108,7 +108,7 @@ export default class Detail extends Component {
             </View>
 
             {
-                isEmpty && <View className='list_empty'>未查到相关数据！</View>
+                isEmpty && <View className='list_empty'>没有查到相关内容！</View>
             }
 
         </View>);

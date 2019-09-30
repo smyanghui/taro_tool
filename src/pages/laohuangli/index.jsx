@@ -6,7 +6,7 @@ import './index.scss';
 
 export default class Index extends Component {
     config = {
-        navigationBarTitleText: 'xxx'
+        navigationBarTitleText: '老黄历'
     }
 
     constructor (props) {
@@ -59,7 +59,9 @@ export default class Index extends Component {
 
     changeDate (e) {
         const curDate = e.detail.value;
-        this.setState({ curDate });
+        this.setState({ curDate }, () => {
+            this.ajaxLaohuangli();
+        });
     }
 
     render () {

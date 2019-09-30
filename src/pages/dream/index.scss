@@ -1,17 +1,18 @@
-page, .out_box { height: 100%;}
-.out_box {
-    background-size: 60% auto;
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    background-color: #fafafa;
+// page, .out_box { height: 100%;}
+
+.meng_bg {
+    display: block;
+    margin: 30px auto; opacity: 0.1;
 }
 .wrap {
+    position: absolute; top: 0; left: 0; z-index: 2;
+    width: 100%; box-sizing: border-box;
     padding: 30px;
 }
 
 .search_box {
     display: flex;
-    padding: 20px 30px; margin: 60px 0;
+    padding: 20px 30px 20px 0; margin: 60px 0;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
@@ -19,7 +20,7 @@ page, .out_box { height: 100%;}
     .zi_input {
         flex: 1;
 
-        input { text-align: center;}
+        // input { text-align: center;}
     }
 }
 
@@ -27,5 +28,15 @@ page, .out_box { height: 100%;}
     padding-bottom: 20px;
     border-bottom: 1px solid #ddd;
 
+    .record {
+        display: inline-block; padding: 0 20px;
+        line-height: 60px; margin-right: 20px; margin-bottom: 10px;
+        background-color: #f1f1f1; border-radius: 60px;
+    }
     .more { color: #0087FF;}
+}
+
+.list_empty {
+    padding-top: 60px;
+    text-align: center; color: #666;
 }

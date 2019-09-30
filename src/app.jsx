@@ -12,26 +12,27 @@ import './app.scss';
 class App extends Component {
     config = {
         pages: [
-            'pages/index/index',
+            'pages/dream/index',
+            'pages/dream/detail',
             // 菜谱
-            'pages/cooking/index',
-            'pages/cooking/list',
-            'pages/cooking/detail',
+            // 'pages/cooking/index',
+            // 'pages/cooking/list',
+            // 'pages/cooking/detail',
             // 故事
-            'pages/story/index',
-            'pages/story/list',
-            'pages/story/detail',
+            // 'pages/story/index',
+            // 'pages/story/list',
+            // 'pages/story/detail',
             // 油价
             'pages/oilPrice/index',
             // 老黄历
             'pages/laohuangli/index',
             // 新华字典
-            'pages/zidian/index',
+            // 'pages/zidian/index',
             // 成语词典
-            'pages/zidian/chengyu',
+            // 'pages/zidian/chengyu',
             // 周公解梦
-            'pages/dream/index',
-            'pages/dream/detail',
+            // 'pages/dream/index',
+            // 'pages/dream/detail',
             // 'pages/set/index',
         ],
         window: {
