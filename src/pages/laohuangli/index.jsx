@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, Picker } from '@tarojs/components';
+import Share from '@/src/components/share';
 
 import api from '@/src/api/juhe';
 import './index.scss';
@@ -96,6 +97,9 @@ export default class Index extends Component {
                     <View className='at-article__h1'>冲煞</View>
                     <View className='at-article__p'>{detail.chongsha}</View>
                 </View>
+
+                {/* 分享按钮 */}
+                <Share />
 
             </View>
         );

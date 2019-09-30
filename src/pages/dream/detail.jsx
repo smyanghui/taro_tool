@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, Block } from '@tarojs/components';
+import Share from '@/src/components/share';
 
 import api from '@/src/api/juhe';
 import './index.scss';
@@ -18,11 +19,12 @@ export default class Detail extends Component {
     }
 
     componentWillMount () {
-        const kw = this.$router.params.kw || '';
-        const id = this.$router.params.id || '';
-        if (kw) { this.ajaxDreamQuery(kw); }
-        Taro.setNavigationBarTitle({title: '梦到-' + kw});
-        if (id) { this.ajaxDreamQueryid(id); }
+        let kw = this.$router.params.kw || '';
+        if (kw) {
+            kw = decodeURIComponent(kw);
+            this.ajaxDreamQuery(kw);
+            Taro.setNavigationBarTitle({title: '梦到-' + kw});
+        }
     }
 
     componentDidMount () {}
@@ -35,7 +37,7 @@ export default class Detail extends Component {
 
     // 查询
     ajaxDreamQuery (keyWord) {
-        const param = {q: decodeURIComponent(keyWord)};
+        const param = {q: keyWord};
         api.dreamQuery(param).then(
             (res) => {
                 if (this.erroToast(res)) { return; }
@@ -110,6 +112,9 @@ export default class Detail extends Component {
             {
                 isEmpty && <View className='list_empty'>没有查到相关内容！</View>
             }
+
+            {/* 分享按钮 */}
+            <Share />
 
         </View>);
     }

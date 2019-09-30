@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Image, Text, Block } from '@tarojs/components';
 import { AtInput, AtButton, AtGrid } from 'taro-ui';
+import Share from '@/src/components/share';
 
 import './index.scss';
 import mBg from './images/m.png';
@@ -135,6 +136,10 @@ export default class Dream extends Component {
                     />
                 </View>
             </View>
+
+            {/* 分享按钮 */}
+            <Share />
+
         </View>);
     }
 }

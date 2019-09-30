@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Block } from '@tarojs/components';
+import Share from '@/src/components/share';
 
 import api from '@/src/api/showapi';
 import './index.scss';
@@ -35,7 +36,7 @@ export default class Index extends Component {
                 const result = res.data.showapi_res_body;
                 const oilList = result.list || [];
                 const curTime = oilList[1].ct;
-                oilList.unshift({prov: '地区', p89: '89', p92: '92', p95: '95', p98: '98'});
+                oilList.unshift({prov: '地区', p89: '89号', p92: '92号', p95: '95号', p98: '98号'});
                 this.setState({ oilList, curTime });
             },
             () => {
@@ -60,6 +61,10 @@ export default class Index extends Component {
                         </View>
                     </Block>)
                 }
+
+                {/* 分享按钮 */}
+                <Share />
+
             </View>
         );
     }
