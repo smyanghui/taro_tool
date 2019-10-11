@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro';
 import { View, Block } from '@tarojs/components';
 import { AtDrawer, AtList, AtListItem } from 'taro-ui';
 
-import api from '@/src/api/showapi';
+import api from '@/src/api/avatardata';
 import './index.scss';
 
 export default class Cooking extends Component {
@@ -58,16 +58,16 @@ export default class Cooking extends Component {
     ajaxCookingMenu () {
         api.cookMenu().then(
             (res) => {
-                const result = res.data.showapi_res_body;
-                let cookingData = [];
-                for (let i in result) {
-                    const one = result[i];
-                    if (typeof one !== 'object') { continue; }
+                const result = res.data.result;
+                const cookingData = result;
+                // for (let i in result) {
+                //     const one = result[i];
+                //     // if (typeof one !== 'object') { continue; }
 
-                    let twoData = [];
-                    for (let j in one) { twoData.push({ name: j, list: one[j] }); }
-                    cookingData.push({ name: i, list: twoData });
-                }
+                //     let twoData = [];
+                //     for (let j in one) { twoData.push({ name: j, list: one[j] }); }
+                //     cookingData.push({ name: i, list: twoData });
+                // }
                 this.setState({ cookingData });
                 Taro.setStorageSync('cookingData', cookingData);
             },
