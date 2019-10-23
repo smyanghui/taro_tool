@@ -12,10 +12,11 @@ import './app.scss';
 class App extends Component {
     config = {
         pages: [
+            'pages/index/index',
             // 菜谱
-            'pages/cooking/index',
-            'pages/cooking/list',
-            'pages/cooking/detail',
+            // 'pages/cooking/index',
+            // 'pages/cooking/list',
+            // 'pages/cooking/detail',
             // 故事
             // 'pages/story/index',
             // 'pages/story/list',
