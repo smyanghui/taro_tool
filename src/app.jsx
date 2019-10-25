@@ -13,6 +13,8 @@ class App extends Component {
     config = {
         pages: [
             'pages/index/index',
+            // 汉字简繁体转换
+            // 'pages/chinese/index',
             // 菜谱
             // 'pages/cooking/index',
             // 'pages/cooking/list',
