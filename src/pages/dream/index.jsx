@@ -24,9 +24,13 @@ export default class Dream extends Component {
                 value: '老黄历',
                 url: '/pages/laohuangli/index'
             },
+            // {
+            //     value: '今日油价',
+            //     url: '/pages/oilPrice/index'
+            // },
             {
-                value: '今日油价',
-                url: '/pages/oilPrice/index'
+                value: '汉字简繁互转',
+                url: '/pages/chinese/index'
             }
         ];
     }
@@ -95,7 +99,7 @@ export default class Dream extends Component {
                         <AtButton
                             type='primary'
                             onClick={this.ajaxDreamQuery.bind(this)}
-                        >查询
+                        >解梦
                         </AtButton>
                     </View>
                 </View>
@@ -104,7 +108,7 @@ export default class Dream extends Component {
                     {
                         historyRecord.length > 0 &&
                         <Block>
-                            <View className='at-article__h2'>最近搜索</View>
+                            <View className='at-article__h2'>周公解梦最近搜索</View>
                             <View className='at-article__p'>
                                 {
                                     historyRecord.map((item, index) => <Block key={index}>
@@ -117,7 +121,7 @@ export default class Dream extends Component {
                             </View>
                         </Block>
                     }
-                    <View className='at-article__h2'>热门搜索</View>
+                    <View className='at-article__h2'>周公解梦热门搜索</View>
                     <View className='at-article__p'>
                         {
                             this.hotRecord.map((item, index) => <Block key={index}>
@@ -128,7 +132,7 @@ export default class Dream extends Component {
                             </Block>)
                         }
                     </View>
-                    <View className='at-article__h2'>其他查询</View>
+                    <View className='at-article__h2'>其他查询工具</View>
                     <AtGrid
                         data={this.otherList}
                         mode='rect'
